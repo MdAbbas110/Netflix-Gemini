@@ -7,7 +7,7 @@
 
 - login/signup page
 
-  - sign in signup form
+  - Signup form
   - login redirect to browse page
 
 - Browse landing page (after authentication )
