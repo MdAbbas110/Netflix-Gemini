@@ -6,9 +6,11 @@
 # Features in this app
 
 - login/signup page
+- Routing
 
   - Signup form
   - login redirect to browse page
+  - Form validation
 
 - Browse landing page (after authentication )
 
