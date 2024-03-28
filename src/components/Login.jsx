@@ -2,12 +2,17 @@ import Header from './Header';
 import bgImg from '../assets/netflixBg.jpg';
 import { useRef, useState } from 'react';
 import { checkValidData } from '../utils/Validate';
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from 'firebase/auth';
+import { auth } from '../utils/firebase';
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
 
-  const name = useRef(null);
+  // const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
 
@@ -16,15 +21,43 @@ const Login = () => {
   };
 
   const handleButtonClick = () => {
+    const email1 = email.current.value;
+    const password2 = password.current.value;
+    // const userName = name.current.value;
     // validate the form data
-    const message = checkValidData(
-      email.current.value,
-      password.current.value,
-      name.current.value
-    );
+    const message = checkValidData(email1, password2);
     setErrorMessage(message);
+    if (message) return;
 
-    // signin /Signup
+    //signin signup logic
+    if (!isSignInForm) {
+      //signup logic here
+      createUserWithEmailAndPassword(auth, email1, password2)
+        .then((userCredential) => {
+          // Signed up
+          const user = userCredential.user;
+          console.log(user);
+          // ...
+        })
+        .catch((error) => {
+          const errorMessage = error.message;
+          setErrorMessage(errorMessage);
+          // ..
+        });
+    } else {
+      //signin or login function
+      signInWithEmailAndPassword(auth, email1, password2)
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          console.log(user);
+          // ...
+        })
+        .catch((error) => {
+          const errorMessage = error.message;
+          setErrorMessage(errorMessage);
+        });
+    }
   };
 
   return (
@@ -35,14 +68,14 @@ const Login = () => {
       </div>
       <form
         onSubmit={(e) => e.preventDefault()}
-        className=" absolute text-white bg-black bg-opacity-80 px-12 py-8 my-32 mx-auto right-0 left-0  w-3/12 "
+        className=" absolute text-white bg-black bg-opacity-80 px-12 py-8 my-20 mx-auto right-0 left-0  w-3/12 "
       >
         <h1 className="font-bold text-3xl py-4">
           {isSignInForm ? 'Sign In' : 'Sign Up'}
         </h1>
         {!isSignInForm && (
           <input
-            ref={name}
+            // ref={name}
             type="text"
             placeholder="Full Name"
             className="p-2 my-4 w-full bg-gray-700"

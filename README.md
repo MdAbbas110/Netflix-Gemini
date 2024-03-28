@@ -11,6 +11,11 @@
   - Signup form
   - login redirect to browse page
   - Form validation
+  - useRef for inputs
+  - firebase setup
+  - create signup new account
+  - implement signin user api
+  - created redux store
 
 - Browse landing page (after authentication )
 
