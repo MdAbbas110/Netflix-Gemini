@@ -5,14 +5,20 @@ import { checkValidData } from '../utils/Validate';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from 'firebase/auth';
 import { auth } from '../utils/firebase';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addUser } from '../utils/userSlice';
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  // const name = useRef(null);
+  const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
 
@@ -23,7 +29,8 @@ const Login = () => {
   const handleButtonClick = () => {
     const email1 = email.current.value;
     const password2 = password.current.value;
-    // const userName = name.current.value;
+    const userName = name.current.value;
+
     // validate the form data
     const message = checkValidData(email1, password2);
     setErrorMessage(message);
@@ -36,7 +43,21 @@ const Login = () => {
         .then((userCredential) => {
           // Signed up
           const user = userCredential.user;
-          console.log(user);
+          updateProfile(user, {
+            displayName: userName,
+            photoURL: 'https://avatars.githubusercontent.com/u/109078342?v=4',
+          })
+            .then(() => {
+              // Profile updated!
+              const { uid, email, displayname, photoURL } = auth.currentUser;
+              dispatch(addUser({ uid, email, displayname, photoURL }));
+              navigate('/browse');
+            })
+            .catch((error) => {
+              // An error occurred
+              setErrorMessage(error.message);
+            });
+
           // ...
         })
         .catch((error) => {
@@ -50,7 +71,7 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log(user);
+          navigate('/browse');
           // ...
         })
         .catch((error) => {
@@ -75,7 +96,7 @@ const Login = () => {
         </h1>
         {!isSignInForm && (
           <input
-            // ref={name}
+            ref={name}
             type="text"
             placeholder="Full Name"
             className="p-2 my-4 w-full bg-gray-700"
