@@ -1,23 +1,43 @@
-import { signOut } from 'firebase/auth';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
 import logo from '../assets/Netflix_Logo_PMS.png';
 import { auth } from '../utils/firebase';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { addUser, removeUser } from '../utils/userSlice';
 
 const Header = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const user = useSelector((store) => store.user);
   const handleSignOut = () => {
     signOut(auth)
       .then(() => {
         // Sign-out successful.
-        navigate('/');
       })
       .catch((error) => {
         // An error happened.
+        console.log(error);
         navigate('/error');
       });
   };
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const { uid, email, displayname, photoURL } = user;
+        dispatch(addUser({ uid, email, displayname, photoURL }));
+        navigate('/browse');
+      } else {
+        dispatch(removeUser());
+        navigate('/');
+      }
+      // return a function form the component for clean up
+      //unsubscribe when the component will unmount
+      return () => unsubscribe();
+    });
+  }, []);
 
   return (
     <div className="z-10 absolute px-8 py-2 flex justify-between w-screen bg-gradient-to-b from-black">

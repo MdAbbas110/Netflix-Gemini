@@ -17,6 +17,14 @@
   - implement signin user api
   - created redux store
 
+-Progress on project
+
+- bug fix of signup user display name and profile picture update
+- redirect the user to /login if trying to browse form the url and visa versa
+- useEffect cleanup unsubscribe to the onAuthChange
+- added constant file and added the strings there and exports
+- got the api key frm tmdb and made the call to get the data out of it
+
 - Browse landing page (after authentication )
 
   - Navbar
