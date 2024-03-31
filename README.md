@@ -24,6 +24,10 @@
 - useEffect cleanup unsubscribe to the onAuthChange
 - added constant file and added the strings there and exports
 - got the api key frm tmdb and made the call to get the data out of it
+- created slice for the movie trailer
+- updated the store with the data
+- embaded the YT vid and autoplay and mute
+- layout for the main and secondary container
 
 - Browse landing page (after authentication )
 
