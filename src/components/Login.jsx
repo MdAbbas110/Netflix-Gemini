@@ -80,7 +80,7 @@ const Login = () => {
   return (
     <>
       <Header />
-      <div className=" absolute h-screen">
+      <div className=" absolute">
         <img className=" object-cover" src={bgImg} alt="/" />
       </div>
       <form
