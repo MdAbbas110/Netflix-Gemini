@@ -4,8 +4,9 @@ import { auth } from '../utils/firebase';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { addUser, removeUser } from '../utils/userSlice';
-import { toggleGeminiSearch } from '../utils/geminiSlice';
+import { addUser, removeUser } from '../redux/userSlice';
+import { toggleGeminiSearch } from '../redux/geminiSlice';
+import { supported_lang } from '../utils/constants';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -48,6 +49,15 @@ const Header = () => {
       <img className="w-44" src={logo} alt="logo" />
       {user && (
         <div className="flex w-full gap-6 items-center justify-end">
+          <select className="px-3 m-2 bg-gray-900 rounded-xl text-white">
+            {supported_lang.map((item, index) => {
+              return (
+                <option key={index} value={item.value}>
+                  {item.lang}
+                </option>
+              );
+            })}
+          </select>
           <button
             onClick={handleGeminiSearch}
             className="py-2 px-4 my-6 text-xl text-black font-semibold bg-white bg-opacity-45  rounded-lg"

@@ -9,7 +9,7 @@ import {
 } from 'firebase/auth';
 import { auth } from '../utils/firebase';
 import { useDispatch } from 'react-redux';
-import { addUser } from '../utils/userSlice';
+import { addUser } from '../redux/userSlice';
 import { AVATAR } from '../utils/constants';
 
 const Login = () => {
@@ -65,11 +65,11 @@ const Login = () => {
     } else {
       //signin or login function
       signInWithEmailAndPassword(auth, email1, password2)
-        .then((userCredential) => {
-          // Signed in
-          const user = userCredential.user;
-          // ...
-        })
+        // .then((userCredential) => {
+        // Signed in
+        // const user = userCredential.user;
+        // ...
+        // })
         .catch((error) => {
           const errorMessage = error.message;
           setErrorMessage(errorMessage);
