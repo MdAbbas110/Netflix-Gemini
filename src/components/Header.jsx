@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { addUser, removeUser } from '../utils/userSlice';
+import { toggleGeminiSearch } from '../utils/geminiSlice';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -38,11 +39,21 @@ const Header = () => {
     });
   }, []);
 
+  const handleGeminiSearch = () => {
+    dispatch(toggleGeminiSearch());
+  };
+
   return (
     <div className="z-10 absolute px-8 py-2 flex justify-between w-screen bg-gradient-to-b from-black">
       <img className="w-44" src={logo} alt="logo" />
       {user && (
-        <div className="flex gap-4 items-center">
+        <div className="flex w-full gap-6 items-center justify-end">
+          <button
+            onClick={handleGeminiSearch}
+            className="py-2 px-4 my-6 text-xl text-black font-semibold bg-white bg-opacity-45  rounded-lg"
+          >
+            Gemini search
+          </button>
           <img
             className="size-[50px] rounded-xl"
             src={user?.photoURL}
@@ -50,7 +61,7 @@ const Header = () => {
           />
           <button
             onClick={handleSignOut}
-            className="p-3 my-6 text-lg text-white font-semibold bg-red-700 w-full rounded-lg"
+            className="p-3 my-6 text-lg text-white font-semibold bg-red-700  rounded-lg"
           >
             SignOut
           </button>
