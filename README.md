@@ -28,6 +28,8 @@
 - updated the store with the data
 - embaded the YT vid and autoplay and mute
 - layout for the main and secondary container
+- Feature:- Multi language feature for the search
+- Gemini search page for the Ai Recommendation
 
 - Browse landing page (after authentication )
 

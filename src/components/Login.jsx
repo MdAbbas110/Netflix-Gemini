@@ -64,16 +64,10 @@ const Login = () => {
         });
     } else {
       //signin or login function
-      signInWithEmailAndPassword(auth, email1, password2)
-        // .then((userCredential) => {
-        // Signed in
-        // const user = userCredential.user;
-        // ...
-        // })
-        .catch((error) => {
-          const errorMessage = error.message;
-          setErrorMessage(errorMessage);
-        });
+      signInWithEmailAndPassword(auth, email1, password2).catch((error) => {
+        const errorMessage = error.message;
+        setErrorMessage(errorMessage);
+      });
     }
   };
 

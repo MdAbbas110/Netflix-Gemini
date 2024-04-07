@@ -16,3 +16,5 @@ export const supported_lang = [
   { value: 'hindi', lang: 'Hindi' },
   { value: 'arabic', lang: 'Arabic' },
 ];
+
+export const OPEN_AI_KEY = 'AIzaSyBLcr4pjQ3ObvHr_NkFNP7chihiAPspAac';

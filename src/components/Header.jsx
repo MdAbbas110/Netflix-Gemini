@@ -7,12 +7,16 @@ import { useEffect } from 'react';
 import { addUser, removeUser } from '../redux/userSlice';
 import { toggleGeminiSearch } from '../redux/geminiSlice';
 import { supported_lang } from '../utils/constants';
+import { changeLang } from '../redux/configSlice';
 
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const user = useSelector((store) => store.user);
+  const showGeminiSearch = useSelector(
+    (store) => store.gemini.showGeminiSearch
+  );
   const handleSignOut = () => {
     signOut(auth)
       .then(() => {
@@ -44,25 +48,34 @@ const Header = () => {
     dispatch(toggleGeminiSearch());
   };
 
+  const handleLangChange = (e) => {
+    dispatch(changeLang(e.target.value));
+  };
+
   return (
     <div className="z-10 absolute px-8 py-2 flex justify-between w-screen bg-gradient-to-b from-black">
       <img className="w-44" src={logo} alt="logo" />
       {user && (
         <div className="flex w-full gap-6 items-center justify-end">
-          <select className="px-3 m-2 bg-gray-900 rounded-xl text-white">
-            {supported_lang.map((item, index) => {
-              return (
-                <option key={index} value={item.value}>
-                  {item.lang}
-                </option>
-              );
-            })}
-          </select>
+          {showGeminiSearch && (
+            <select
+              onChange={handleLangChange}
+              className="px-3 m-2 bg-gray-900 rounded-xl text-white"
+            >
+              {supported_lang.map((item, index) => {
+                return (
+                  <option key={index} value={item.value}>
+                    {item.lang}
+                  </option>
+                );
+              })}
+            </select>
+          )}
           <button
             onClick={handleGeminiSearch}
             className="py-2 px-4 my-6 text-xl text-black font-semibold bg-white bg-opacity-45  rounded-lg"
           >
-            Gemini search
+            {showGeminiSearch ? 'Home' : 'Gemini search'}
           </button>
           <img
             className="size-[50px] rounded-xl"
