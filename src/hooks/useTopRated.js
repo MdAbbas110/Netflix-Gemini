@@ -1,10 +1,13 @@
 import { useEffect } from 'react';
 import { API_OPTIONS } from '../utils/constants';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addTopRated } from '../redux/moviesSlice';
 
 const useTopRated = () => {
   const dispatch = useDispatch();
+
+  const TopRatedList = useSelector((store) => store.movies.topRated);
+
   const getMovieList = async () => {
     const data = await fetch(
       `https://api.themoviedb.org/3/tv/top_rated`,
@@ -15,7 +18,7 @@ const useTopRated = () => {
   };
 
   useEffect(() => {
-    getMovieList();
+    !TopRatedList && getMovieList();
   }, []);
 };
 
