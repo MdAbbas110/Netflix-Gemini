@@ -47,8 +47,8 @@ const GeminiInput = () => {
   };
 
   return (
-    <div className="pt-[10%]  mx-auto flex justify-center">
-      <form className="bg-black grid w-1/2 grid-cols-4">
+    <div className="md:pt-[10%] pt-[40%]  mx-auto flex justify-center">
+      <form className="bg-black grid md:w-1/2 grid-cols-4">
         <input
           ref={searchText}
           type="text"

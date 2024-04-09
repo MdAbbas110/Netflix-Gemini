@@ -35,7 +35,7 @@ const MovieList = ({ title, movies }) => {
 
   return (
     <div className="px-6  text-white">
-      <h1 className="text-4xl py-4 font-medium">{title}</h1>
+      <h1 className="md:text-4xl text-xl py-4 font-medium">{title}</h1>
       <div
         ref={scrollContainerRef}
         onMouseDown={handleMouseDown}

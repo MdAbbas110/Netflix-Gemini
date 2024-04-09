@@ -74,12 +74,13 @@ const Login = () => {
   return (
     <>
       <Header />
-      <div className=" absolute">
-        <img className=" object-cover" src={bgImg} alt="/" />
+
+      <div className="h-screen absolute">
+        <img className="h-screen md:h-auto object-cover" src={bgImg} alt="/" />
       </div>
       <form
         onSubmit={(e) => e.preventDefault()}
-        className=" absolute text-white bg-black bg-opacity-80 px-12 py-8 my-20 mx-auto right-0 left-0  w-3/12 "
+        className=" absolute text-white bg-black bg-opacity-80 px-12 py-8 my-20 mx-auto right-0 left-0 w-[85%] md:w-3/12 "
       >
         <h1 className="font-bold text-3xl py-4">
           {isSignInForm ? 'Sign In' : 'Sign Up'}
@@ -119,6 +120,15 @@ const Login = () => {
         >
           {isSignInForm ? 'New to Netflix? Sign Up' : 'Already register LogIn'}
         </p>
+        {isSignInForm && (
+          <div className=" w-full items-end pt-5 flex flex-col gap-2">
+            <p className="text-lg text-red-400 font-medium">
+              Direct login via:
+            </p>
+            <p className="font-medium">test@gmail.com</p>
+            <p className="font-medium">Test1234</p>
+          </div>
+        )}
       </form>
     </>
   );

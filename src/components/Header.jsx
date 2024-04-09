@@ -53,7 +53,7 @@ const Header = () => {
   };
 
   return (
-    <div className="z-10 absolute px-8 py-2 flex justify-between w-screen bg-gradient-to-b from-black">
+    <div className="z-10 absolute px-4 md:px-8 py-2 flex flex-col md:flex-row items-center md:items-start md:justify-between w-screen bg-gradient-to-b from-black">
       <img className="w-44" src={logo} alt="logo" />
       {user && (
         <div className="flex w-full gap-6 items-center justify-end">
@@ -78,13 +78,13 @@ const Header = () => {
             {showGeminiSearch ? 'Home' : 'Gemini search'}
           </button>
           <img
-            className="size-[50px] rounded-xl"
+            className="size-[50px] hidden md:block rounded-xl"
             src={user?.photoURL}
             alt="/"
           />
           <button
             onClick={handleSignOut}
-            className="p-3 my-6 text-lg text-white font-semibold bg-red-700  rounded-lg"
+            className="p-3 mr-4 md:mr-0 my-6 text-lg text-white font-semibold bg-red-700  rounded-lg"
           >
             SignOut
           </button>

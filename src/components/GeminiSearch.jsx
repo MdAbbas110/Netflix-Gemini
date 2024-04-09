@@ -5,8 +5,8 @@ import bgImg from '../assets/netflixBg.jpg';
 const GeminiSearch = () => {
   return (
     <div>
-      <div className=" fixed -z-20">
-        <img className=" object-cover" src={bgImg} alt="/" />
+      <div className=" fixed h-screen -z-20">
+        <img className="h-[120%] object-cover" src={bgImg} alt="/" />
       </div>
       <GeminiInput />
       <GeminiSuggestions />
