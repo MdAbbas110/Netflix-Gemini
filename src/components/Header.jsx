@@ -60,7 +60,7 @@ const Header = () => {
           {showGeminiSearch && (
             <select
               onChange={handleLangChange}
-              className="px-3 m-2 bg-gray-900 rounded-xl text-white"
+              className="px-4 py-3 m-2 bg-gray-900 rounded-xl text-white"
             >
               {supported_lang.map((item, index) => {
                 return (
@@ -73,9 +73,9 @@ const Header = () => {
           )}
           <button
             onClick={handleGeminiSearch}
-            className="py-2 px-4 my-6 text-xl text-black font-semibold bg-white bg-opacity-45  rounded-lg"
+            className="py-2 px-4 my-6 text-xl  text-[#FFD700] font-semibold bg-white bg-opacity-45  rounded-lg"
           >
-            {showGeminiSearch ? 'Home' : 'Gemini search'}
+            {showGeminiSearch ? 'Home 🏠' : 'Gemini search  ✨'}
           </button>
           <img
             className="size-[50px] hidden md:block rounded-xl"
