@@ -5,13 +5,17 @@ const geminiSlice = createSlice({
   initialState: {
     showGeminiSearch: false,
     recommendedMovies: null,
+    recommendedMoviesNames: null,
   },
   reducers: {
     toggleGeminiSearch: (state) => {
       state.showGeminiSearch = !state.showGeminiSearch;
     },
     showRecommendedMovies: (state, action) => {
-      state.recommendedMovies = action.payload;
+      // this action is an object now and we can destructure it and use
+      const { movieNames, movieResults } = action.payload;
+      state.recommendedMovies = movieResults;
+      state.recommendedMoviesNames = movieNames;
     },
   },
 });

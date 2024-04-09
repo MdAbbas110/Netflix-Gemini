@@ -38,7 +38,12 @@ const GeminiInput = () => {
     // this promiseArray will return the array of promise and we need to get the results ot of all the promise
 
     const TMDBSearch = await Promise.all(promiseArray);
-    dispatch(showRecommendedMovies(TMDBSearch));
+    dispatch(
+      showRecommendedMovies({
+        movieNames: moviesArray,
+        movieResults: TMDBSearch,
+      })
+    );
   };
 
   return (

@@ -41,6 +41,7 @@ const Login = () => {
         .then((userCredential) => {
           // Signed up
           const user = userCredential.user;
+          console.log(userCredential);
           updateProfile(user, {
             displayName: name.current.value,
             photoURL: AVATAR,
@@ -54,7 +55,6 @@ const Login = () => {
               // An error occurred
               setErrorMessage(error.message);
             });
-
           // ...
         })
         .catch((error) => {
